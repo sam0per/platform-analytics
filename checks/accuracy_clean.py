@@ -22,10 +22,16 @@ def features() -> pd.DataFrame:
         return con.sql("select * from customer_model_features order by customer_id").df()
 
 
-def accuracy(df: pd.DataFrame) -> float:
+def fit(df: pd.DataFrame):
+    """The fixed split and model: 30% test, random_state 42, stratified on churned. Returns (model, X_test, y_test)."""
     X, y = df.drop(columns=["customer_id", "churned"]), df["churned"]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
     model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000)).fit(X_train, y_train)
+    return model, X_test, y_test
+
+
+def accuracy(df: pd.DataFrame) -> float:
+    model, X_test, y_test = fit(df)
     return 100 * model.score(X_test, y_test)
 
 
