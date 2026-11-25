@@ -9,3 +9,4 @@ claude_md_lines_before = 120  # CLAUDE.md lines before the review
 claude_md_lines_after = 15    # CLAUDE.md lines after the review
 legacy_rows = 8994            # customers in features_legacy
 acc_tolerance_pts = 2         # check accuracy_clean passes within this many points of acc_clean
+event_drop_limit_pct = 1      # CI fails when any day moves more than this % against main
