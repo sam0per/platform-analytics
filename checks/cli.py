@@ -1,4 +1,4 @@
-"""uv run check <name|all>: compare checks/<name>.py value() with demo_numbers.toml[KEY]."""
+"""uv run check <name|all>: compare checks/<name>.py value() with demo_numbers.toml[KEY], within the module TOLERANCE (default 0)."""
 
 import importlib
 import pkgutil
@@ -22,7 +22,7 @@ def expected() -> dict:
 def run(name: str, numbers: dict) -> tuple[object, bool]:
     mod = importlib.import_module(f"checks.{name}")
     value = mod.value()
-    return value, value == numbers[mod.KEY]
+    return value, abs(value - numbers[mod.KEY]) <= getattr(mod, "TOLERANCE", 0)
 
 
 def main() -> None:

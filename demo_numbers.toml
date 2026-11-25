@@ -7,3 +7,5 @@ people = 2000           # living people in the customers table
 events_total = 200000   # raw event rows
 claude_md_lines_before = 120  # CLAUDE.md lines before the review
 claude_md_lines_after = 15    # CLAUDE.md lines after the review
+legacy_rows = 8994            # customers in features_legacy
+acc_tolerance_pts = 2         # check accuracy_clean passes within this many points of acc_clean

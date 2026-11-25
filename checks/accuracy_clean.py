@@ -3,6 +3,9 @@
 Every column except customer_id and churned is a feature, so a leaked column added to the model shows up here.
 """
 
+import tomllib
+from pathlib import Path
+
 import duckdb
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
@@ -11,6 +14,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 KEY = "acc_clean"
+TOLERANCE = tomllib.loads(Path("demo_numbers.toml").read_text())["acc_tolerance_pts"]  # stop if accuracy moves more than this
 
 
 def features() -> pd.DataFrame:

@@ -3,7 +3,7 @@ from pathlib import Path
 
 KEYS = {
     "customers_in", "customers_out", "acc_clean", "acc_leaky", "event_drop_pct", "people", "events_total",
-    "claude_md_lines_before", "claude_md_lines_after",
+    "claude_md_lines_before", "claude_md_lines_after", "legacy_rows", "acc_tolerance_pts",
 }
 
 
