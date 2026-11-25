@@ -52,6 +52,11 @@ def test_customer_activity_one_row_per_customer():
     assert mart("select count(*), count(distinct customer_id) from customer_activity") == [(10_000, 10_000)]
 
 
+def test_five_roughly_balanced_regions():
+    counts = [n for (_, n) in mart("select region, count(*) from customer_activity group by 1")]
+    assert len(counts) == 5 and min(counts) > 1_800
+
+
 def test_no_model_reads_features_legacy():
     assert not [p for p in Path("models").rglob("*") if p.is_file() and "features_legacy" in p.read_text()]
 

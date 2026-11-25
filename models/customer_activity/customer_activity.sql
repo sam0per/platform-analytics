@@ -3,6 +3,7 @@ select
     a.customer_id,
     a.signup_date,
     a.plan_tier,
+    a.region,
     u.days_active_90d,
     u.days_active_last_30,
     u.minutes_90d,

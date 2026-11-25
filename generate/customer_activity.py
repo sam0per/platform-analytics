@@ -24,6 +24,7 @@ OUT = Path("data/raw")
 
 PLANS = np.array(["basic", "team", "enterprise"])
 FEES = np.array([29, 99, 399])
+REGIONS = np.array(["Northmere", "Eastholm", "Southreach", "Westhollow", "Midmoor"])  # chapter 8: one thread per region
 
 
 def _z(x: np.ndarray) -> np.ndarray:
@@ -64,7 +65,10 @@ def main() -> None:
     padded_ids = ids.astype(object)  # fixed-width <U6 would silently drop the added space
     padded_ids[rng.choice(N, PADDED, replace=False)] += " "
 
-    accounts = pd.DataFrame({"customer_id": ids, "signup_date": signup.astype(str), "plan_tier": PLANS[plan], "churned": churned})
+    region = REGIONS[np.random.default_rng([SEED, 8]).integers(0, len(REGIONS), N)]  # own stream: leaves every other value unchanged
+    accounts = pd.DataFrame(
+        {"customer_id": ids, "signup_date": signup.astype(str), "plan_tier": PLANS[plan], "region": region, "churned": churned}
+    )
     features_v2 = pd.DataFrame(
         {
             "customer_id": padded_ids,
