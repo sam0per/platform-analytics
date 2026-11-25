@@ -17,7 +17,7 @@ JAR = Path("vendor/synthea-with-dependencies.jar")
 JAR_SHA256 = "ed43c20ad40ba5c3bc724503a5af032715fe3c491620b766148e7c2361e6ecc1"  # Synthea v4.0.0
 OUT = Path("data/raw/customers.csv")
 PEOPLE = 2000
-COLUMNS = ["customer_id", "first_name", "last_name", "email", "birth_date", "city", "state"]
+COLUMNS = ["person_id", "first_name", "last_name", "email", "birth_date", "city", "state"]
 
 
 def java() -> str:

@@ -20,7 +20,7 @@ def test_exactly_2000_people():
 
 def test_ids_and_emails_unique():
     rows = people()
-    n, ids, emails = len(rows), len({r["customer_id"] for r in rows}), len({r["email"] for r in rows})
+    n, ids, emails = len(rows), len({r["person_id"] for r in rows}), len({r["email"] for r in rows})
     assert ids == n
     assert emails == n
 
@@ -45,4 +45,4 @@ def test_stg_customers_has_no_personal_columns():
         cols = {c for (c,) in con.execute(
             "select column_name from information_schema.columns where table_name = 'stg_customers'"
         ).fetchall()}
-    assert cols == {"customer_id", "birth_year", "state"}
+    assert cols == {"person_id", "birth_year", "state"}
