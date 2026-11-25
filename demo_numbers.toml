@@ -1,7 +1,7 @@
 customers_in = 10000    # customers in accounts.csv
-customers_out = 9730    # accounts whose customer_id matches features_v2 exactly
+customers_out = 9730    # accounts.csv rows whose raw customer_id is in features_v2.csv
 acc_clean = 71          # churn model accuracy (%)
-acc_leaky = 97          # churn model accuracy (%) with exit_survey_sent as a feature
-event_drop_pct = 18     # event rows (%) the per-minute duplicate rule removes
+acc_leaky = 97          # churn model accuracy (%) with every features_v2 column
+event_drop_pct = 18     # event_drop check (%), see checks/event_drop.py
 people = 2000           # living people in the customers table
 events_total = 200000   # raw event rows

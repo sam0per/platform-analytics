@@ -39,7 +39,7 @@ def verify_jar() -> None:
         sys.exit(f"customers: {JAR} sha256 is {digest}, expected {JAR_SHA256}")
 
 
-def synthea_patients(tmp: Path) -> list[dict]:
+def synthea_people(tmp: Path) -> list[dict]:
     cmd = [
         java(), "-jar", str(JAR.resolve()),
         # -e pins the simulation end date; Synthea defaults it to today, so output would drift.
@@ -65,8 +65,8 @@ def email_stem(first: str, last: str) -> str:
     return re.sub(r"[^a-z.]", "", ascii_name.lower())
 
 
-def rows(patients: list[dict]) -> list[list[str]]:
-    living = sorted((p for p in patients if not p["DEATHDATE"]), key=lambda p: p["Id"])  # thread order is not stable
+def rows(people: list[dict]) -> list[list[str]]:
+    living = sorted((p for p in people if not p["DEATHDATE"]), key=lambda p: p["Id"])  # thread order is not stable
     if len(living) != PEOPLE:
         sys.exit(f"customers: Synthea gave {len(living)} living people, expected {PEOPLE}")
     seen: dict[str, int] = {}
@@ -87,7 +87,7 @@ def main() -> None:
         return
     verify_jar()
     with tempfile.TemporaryDirectory() as tmp:
-        data = rows(synthea_patients(Path(tmp)))
+        data = rows(synthea_people(Path(tmp)))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     partial = OUT.with_suffix(".csv.tmp")
     with open(partial, "w", newline="", encoding="utf-8") as f:
