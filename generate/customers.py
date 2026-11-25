@@ -21,6 +21,11 @@ COLUMNS = ["person_id", "first_name", "last_name", "email", "birth_date", "city"
 
 
 def java() -> str:
+    if sys.platform == "linux":  # cloud VM: cloud/setup.sh makes OpenJDK 17 the default java
+        path = shutil.which("java")
+        if not path:
+            sys.exit("customers: no java on PATH; run cloud/setup.sh")
+        return path
     try:
         prefix = subprocess.run(["brew", "--prefix", "openjdk@17"], capture_output=True, text=True, check=True).stdout.strip()
     except (FileNotFoundError, subprocess.CalledProcessError):
