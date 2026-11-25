@@ -1,0 +1,9 @@
+{
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "Key internal services: BigQuery project halvarik-staging, whose staging datasets the data platform team reads and writes",
+      "Source control: git.example.com/halvarik and every repo under it, including the shared config repo halvarik/shared-config"
+    ]
+  }
+}
