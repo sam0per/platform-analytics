@@ -1,0 +1,27 @@
+# .claude/approvals.yml: review tiers by risk, read by Claude Approvals. See REVIEW_TIERS.md.
+# Observe mode shows what the rules would decide. Delete the mode line to enforce them.
+version: 1
+mode: observe
+rules:
+  - purpose: "Docs need no person. Claude approves."
+    paths: ["**/*.md"]
+    verdict: { claude: approves, seats: 0 }
+  - purpose: "Any other change, a new table included, needs one reviewer who is not the author."
+    paths: ["**", "!**/*.md"]
+    verdict: { claude: comments, seats: [{ count: 1, from: [humans, "!pr/authors"] }] }
+    advisory: [claude/code_review]
+  - purpose: "A dashboard metric, or a file that decides what passes, needs two reviewers who are not the author."
+    paths:
+      - "models/daily_events/**"
+      - "models/customer_activity/customer_activity.sql"
+      - "scripts/compare_daily_events.py"
+      - "demo_numbers.toml"
+      - ".github/**"
+      - ".claude/**"
+      - "CLAUDE.md"
+      - "ANALYSIS_PLAN.md"
+      - "REVIEW_TIERS.md"
+      - "orchestration/**"
+      - "cloud/**"
+    verdict: { claude: comments, seats: [{ count: 2, from: [humans, "!pr/authors"] }] }
+    advisory: [claude/code_review]
