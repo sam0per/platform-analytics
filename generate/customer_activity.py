@@ -18,8 +18,8 @@ DAYS = 90
 START = np.datetime64("2026-08-01")  # usage window: 2026-08-01 .. 2026-10-29
 LEGACY_SNAPSHOT = np.datetime64("2026-03-31")
 CHURN_RATE = 0.40  # majority-class baseline 60%
-NOISE = 4.0  # churn-latent noise; tunes acc_clean
-SURVEY_FLIP = 0.032  # exit-survey mislabel rate; tunes acc_leaky
+NOISE = 3.79  # churn-latent noise; tunes acc_clean
+SURVEY_FLIP = 0.029  # exit-survey mislabel rate; tunes acc_leaky
 OUT = Path("data/raw")
 
 PLANS = np.array(["basic", "team", "enterprise"])
