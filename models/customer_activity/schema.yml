@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: customer_activity
+    description: One row per customer with 90-day usage and the agreed "active" flag.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: is_active
+        description: Used the product in the last 30 days of the data.
+        data_tests: [not_null]
+  - name: customer_model_features
+    description: One row per customer for the churn model, without outcome-only columns.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: churned
+        data_tests: [not_null]

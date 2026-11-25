@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Living people from Synthea, non-personal columns only.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: birth_year
+      - name: state

@@ -1,0 +1,9 @@
+name: platform_analytics
+version: "1.0.0"
+profile: platform_analytics
+model-paths: ["models"]
+test-paths: ["tests_dbt"]  # keeps dbt out of the pytest tests/ folder
+
+models:
+  platform_analytics:
+    +materialized: table

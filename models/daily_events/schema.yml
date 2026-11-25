@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_events
+    description: Raw alert events, one row per delivery (re-deliveries included).
+  - name: int_events_deduped
+    description: Events after the current duplicate rule, one row per event_id.
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+  - name: daily_events
+    description: Event counts per day and source.
+    columns:
+      - name: event_date
+        data_tests: [not_null]
+      - name: source
+        data_tests: [not_null]
+    data_tests:
+      - unique:
+          column_name: "event_date || '|' || source"

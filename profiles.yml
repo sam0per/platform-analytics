@@ -1,0 +1,7 @@
+platform_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: platform.duckdb
+      threads: 1
