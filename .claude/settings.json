@@ -5,5 +5,17 @@
       "Read(**/.env*)",
       "Read(~/.config/gcloud/**)"
     ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; [ -f data/raw/customers.csv ] && [ \"$CLAUDE_CODE_REMOTE\" != true ] || exit 0; { echo 'Stop hook: dbt build must pass, check row_counts must print 10000 and check accuracy_clean 71 (plus or minus 2).'; uv run dbt build --quiet && uv run check row_counts && uv run check accuracy_clean; } >&2 || exit 2"
+          }
+        ]
+      }
+    ]
   }
 }
