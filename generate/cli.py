@@ -1,4 +1,7 @@
-"""uv run generate [table]: run generate/<table>.py main(), or all of them in sorted order."""
+"""uv run generate [table]: run generate/<table>.py main(), or all of them in sorted order.
+
+A failing table does not stop the others; the run then exits non-zero and names it.
+"""
 
 import importlib
 import pkgutil
@@ -22,5 +25,12 @@ def main() -> None:
     if len(args) > 1 or (args and args[0] not in known):
         sys.exit(f"usage: generate [{'|'.join(known)}]")
     Path("data/raw").mkdir(parents=True, exist_ok=True)
+    failed = []
     for table in args or known:
-        run(table)
+        try:
+            run(table)
+        except (Exception, SystemExit) as e:  # generators report setup problems with sys.exit(msg)
+            print(f"{table}: failed: {e}", file=sys.stderr)
+            failed.append(table)
+    if failed:
+        sys.exit(f"generate: failed tables: {', '.join(failed)}")
