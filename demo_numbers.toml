@@ -5,3 +5,5 @@ acc_leaky = 97          # churn model accuracy (%) with every features_v2 column
 event_drop_pct = 18     # event_drop check (%), see checks/event_drop.py
 people = 2000           # living people in the customers table
 events_total = 200000   # raw event rows
+claude_md_lines_before = 120  # CLAUDE.md lines before the review
+claude_md_lines_after = 15    # CLAUDE.md lines after the review
