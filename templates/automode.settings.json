@@ -1,0 +1,7 @@
+{
+  "autoMode": {
+    "environment": [
+      "$defaults"
+    ]
+  }
+}
