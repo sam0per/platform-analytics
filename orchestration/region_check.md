@@ -12,4 +12,8 @@ Give each subagent its task below exactly as written. Do not edit the tasks.
 | Southreach | Run `uv run python analysis/region_accuracy.py Southreach` and reply with the line it prints. |
 | Westhollow | Run `uv run python analysis/region_accuracy.py Westhollow` and reply with the line it prints. |
 
-When all five are back, reply with one table of the five results.
+Judge each result against `ANALYSIS_PLAN.md` as it comes back.
+Send a result that fails the acceptance rule back to its subagent, with the rule it broke. Judge the new result the same way.
+
+When all five are accepted, reply with one table: region, accuracy, 95% interval, n, and how many times it was sent back.
+Then apply the plan's decision rule in one line.
