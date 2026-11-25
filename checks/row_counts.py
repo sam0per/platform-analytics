@@ -1,6 +1,6 @@
-"""Chapter 6 row-count check: customers that reach customer_model_features, as built by dbt.
+"""Row-count check: customers that reach customer_model_features, as built by dbt.
 
-All 10,000 accounts must come out of the joins. A join that drops keys (Run B) prints fewer and fails.
+All 10,000 accounts must come out of the joins. A join that drops keys prints fewer and fails.
 """
 
 import duckdb

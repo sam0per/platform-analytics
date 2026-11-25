@@ -1,7 +1,7 @@
-customers_in = 10000    # ch6: customers before the join
-customers_out = 9730    # ch6: customers after the broken inner join
-acc_clean = 71          # ch6: model accuracy (%) without leakage
-acc_leaky = 97          # ch6: model accuracy (%) with the outcome-only column
-event_drop_pct = 18     # ch7: daily event rows lost (%) by the new dedup rule
-people = 2000           # ch4: living people in the Synthea customers table
-events_total = 200000   # ch7: raw events generated
+customers_in = 10000    # customers in accounts.csv
+customers_out = 9730    # accounts whose customer_id matches features_v2 exactly
+acc_clean = 71          # churn model accuracy (%)
+acc_leaky = 97          # churn model accuracy (%) with exit_survey_sent as a feature
+event_drop_pct = 18     # event rows (%) the per-minute duplicate rule removes
+people = 2000           # living people in the customers table
+events_total = 200000   # raw event rows

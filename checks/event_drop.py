@@ -1,4 +1,4 @@
-"""Chapter 7: % fewer event rows when the proposed duplicate rule replaces the current one."""
+"""% fewer event rows when the proposed duplicate rule replaces the current one."""
 
 import duckdb
 
@@ -12,12 +12,12 @@ select * from raw_events
 qualify row_number() over (partition by event_id order by event_ts) = 1
 """
 
-# PROPOSED rule (chapter 7 pull request): also collapse events that share
-# source, signature and entity within the same minute.
+# PROPOSED rule: also collapse events that share
+# source, event_type and device within the same minute.
 PROPOSED_RULE = """
 select * from current_rule
 qualify row_number() over (
-    partition by source, signature, entity, date_trunc('minute', event_ts)
+    partition by source, event_type, device, date_trunc('minute', event_ts)
     order by event_ts, event_id
 ) = 1
 """

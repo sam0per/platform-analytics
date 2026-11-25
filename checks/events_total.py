@@ -1,4 +1,4 @@
-"""Chapter 7: raw event rows in data/raw/events.csv, re-deliveries included."""
+"""Raw event rows in data/raw/events.csv, re-deliveries included."""
 
 import duckdb
 

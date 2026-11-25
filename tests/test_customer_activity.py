@@ -1,4 +1,4 @@
-"""customer_activity: planted chapter 6 defects and the fixed models on main.
+"""customer_activity: the raw-data quirks and the models built from them.
 
 Needs `uv run generate customer_activity` and `uv run dbt build` first.
 """

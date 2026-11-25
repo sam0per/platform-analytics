@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_events
-    description: Raw alert events, one row per delivery (re-deliveries included).
+    description: Raw events, one row per delivery (re-deliveries included).
   - name: int_events_deduped
     description: Events after the current duplicate rule, one row per event_id.
     columns:

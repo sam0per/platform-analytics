@@ -1,9 +1,9 @@
 """Subscription data for the customer_activity mart: accounts, usage, features_v2, features_legacy.
 
-Planted on purpose (chapter 6):
-- 270 customer_id values in features_v2 carry a trailing space, so an untrimmed inner join drops them.
-- features_v2.exit_survey_sent is only known after a customer churns (target leakage).
-- features_legacy is an old snapshot loaded by a scheduler outside the repo; no model reads it.
+features_v2 comes from another system's export:
+- 270 of its customer_id values carry a trailing space.
+- exit_survey_sent is set when the exit survey goes out, after a customer churns.
+features_legacy is an older snapshot of the features.
 """
 
 from pathlib import Path
@@ -24,7 +24,7 @@ OUT = Path("data/raw")
 
 PLANS = np.array(["basic", "team", "enterprise"])
 FEES = np.array([29, 99, 399])
-REGIONS = np.array(["Northmere", "Eastholm", "Southreach", "Westhollow", "Midmoor"])  # chapter 8: one thread per region
+REGIONS = np.array(["Northmere", "Eastholm", "Southreach", "Westhollow", "Midmoor"])
 
 
 def _z(x: np.ndarray) -> np.ndarray:
