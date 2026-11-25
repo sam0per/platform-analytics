@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./data/raw/customers.csv)",
+      "Read(**/.env*)",
+      "Read(~/.config/gcloud/**)"
+    ]
+  }
+}
