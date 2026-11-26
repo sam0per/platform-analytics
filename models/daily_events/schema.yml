@@ -4,7 +4,7 @@ models:
   - name: stg_events
     description: Raw events, one row per delivery (re-deliveries included).
   - name: int_events_deduped
-    description: Events after the current duplicate rule, one row per event_id.
+    description: Events after the duplicate rule, one row per event per source, event_type, device and minute.
     columns:
       - name: event_id
         data_tests: [unique, not_null]
